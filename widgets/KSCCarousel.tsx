@@ -30,7 +30,7 @@ const KSCCarousel = () => {
             width={99999}
             height={99999}
             alt={item.title}
-            className="w-full bg-amber-400"
+            className="w-full"
           />
           <div className="w-full flex flex-col items-start justify-between h-full gap-8 py-10">
             <div className="flex flex-col gap-8 h-full">

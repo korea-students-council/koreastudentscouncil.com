@@ -30,6 +30,7 @@ const Admin = () => {
       alert('생성 완료');
       window.location.reload();
     }
+    console.log(data);
   };
 
   const handleRemoveContentsClick = async (name: number) => {
@@ -41,6 +42,7 @@ const Admin = () => {
         alert('삭제 완료');
         window.location.reload();
       }
+      console.log(data);
     }
   };
 
