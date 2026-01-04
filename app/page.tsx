@@ -10,7 +10,10 @@ const Home = () => {
   return (
     <main>
       <Header />
-      <section className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col">
+      <section
+        id="introduce"
+        className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col"
+      >
         <hgroup className="flex flex-col items-center justify-center -mt-12 font-[Pretendard]">
           <h2 className="text-4xl text-[#3943AE] font-semibold">전국고교학생회장연합</h2>
           <h1 className="text-[13rem] text-[#00187a] font-bold leading-[115%]">대한학생회</h1>
@@ -309,11 +312,17 @@ const Home = () => {
           <div></div>
         </article>
       </section>
-      <section className="flex items-center py-[5%] flex-col gap-24 w-screen min-h-screen">
+      <section
+        id="events"
+        className="flex items-center py-[5%] flex-col gap-24 w-screen min-h-screen"
+      >
         <HGroup>대표 행사</HGroup>
         <KSCCarousel />
       </section>
-      <section className="flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen">
+      <section
+        id="SNS"
+        className="flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen"
+      >
         <HGroup>SNS</HGroup>
         <ul className="w-full flex justify-between">
           {[
@@ -357,7 +366,10 @@ const Home = () => {
           ))}
         </ul>
       </section>
-      <section className="flex items-center py-[5%] px-[16%] flex-col gap-24 w-screen bg-[#001B75]">
+      <section
+        id="contact"
+        className="flex items-center py-[5%] px-[16%] flex-col gap-24 w-screen bg-[#001B75]"
+      >
         <HGroup variant="dark">Contact</HGroup>
         <article className="font-[Pretendard] text-white flex flex-col items-center justify-center gap-1">
           <h2 className="text-xl font-bold">문 의</h2>

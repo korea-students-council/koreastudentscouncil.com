@@ -36,7 +36,7 @@ const Carousel = <T,>({ items, renderItems, dot, ...options }: CarouselProps<T>)
 
   return (
     <div
-      className={cn('relative text-center', {
+      className={cn('relative w-screen px-20 text-center', {
         'text-center': dotAlign === 'center',
         'text-right': dotAlign === 'right',
         'text-left': dotAlign === 'left',

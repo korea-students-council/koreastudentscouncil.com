@@ -12,13 +12,19 @@ const Header = () => {
         alt="logo"
       />
       <ul className="flex items-center h-full">
-        {['단체 소개', '대표 행사', 'SNS', 'Contact'].map((navItem) => (
-          <nav
-            key={navItem}
+        {[
+          { label: '단체 소개', href: '#introduce' },
+          { label: '대표 행사', href: '#events' },
+          { label: 'SNS', href: '#SNS' },
+          { label: 'Contact', href: '#Contact' },
+        ].map((navItem) => (
+          <a
+            key={navItem.label}
+            href={navItem.href}
             className="px-5 h-full text-[13px] font-[Pretendard] flex items-center justify-center cursor-pointer"
           >
-            {navItem}
-          </nav>
+            {navItem.label}
+          </a>
         ))}
       </ul>
     </header>
