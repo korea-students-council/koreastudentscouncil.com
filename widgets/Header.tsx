@@ -38,7 +38,7 @@ const Header = () => {
           <a
             key={navItem.label}
             href={navItem.href}
-            className="px-3 lg:px-5 h-full text-xs lg:text-[13px] font-[Pretendard] flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors"
+            className="px-3 lg:px-5 h-full text-xs lg:text-[13px] font-[Pretendard] flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors text-black"
           >
             {navItem.label}
           </a>
@@ -58,7 +58,7 @@ const Header = () => {
               <a
                 key={navItem.label}
                 href={navItem.href}
-                className="px-5 py-4 text-sm font-[Pretendard] cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100"
+                className="px-5 py-4 text-sm font-[Pretendard] cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 text-black"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {navItem.label}
