@@ -12,14 +12,38 @@ const Home = () => {
       <Header />
       <section
         id="introduce"
-        className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col"
+        className={classNames(
+          "w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col",
+          'sm:px-6',
+        )}
       >
-        <hgroup className="flex flex-col items-center justify-center -mt-12 font-[Pretendard]">
-          <h2 className="text-4xl text-[#3943AE] font-semibold">전국고교학생회장연합</h2>
-          <h1 className="text-[13rem] text-[#00187a] font-bold leading-[115%]">대한학생회</h1>
+        <hgroup
+          className={classNames(
+            'flex flex-col items-center justify-center -mt-12 font-[Pretendard]',
+            'sm:-mt-6',
+          )}
+        >
+          <h2
+            className={classNames('text-4xl text-[#3943AE] font-semibold', 'sm:text-2xl')}
+          >
+            전국고교학생회장연합
+          </h2>
+          <h1
+            className={classNames(
+              'text-[13rem] text-[#00187a] font-bold leading-[115%]',
+              'sm:text-6xl sm:leading-tight',
+            )}
+          >
+            대한학생회
+          </h1>
         </hgroup>
       </section>
-      <section className="flex items-center justify-center px-[16%] flex-col gap-20 bg-[url('/introduce-background.png')] bg-cover bg-center w-screen h-screen">
+      <section
+        className={classNames(
+          "flex items-center justify-center px-[16%] flex-col gap-20 bg-[url('/introduce-background.png')] bg-cover bg-center w-screen h-screen",
+          'sm:h-auto sm:py-16 sm:px-6 sm:gap-10',
+        )}
+      >
         <HGroup>단체 소개</HGroup>
         <article className="flex flex-col font-[Pretendard] text-[#00187a] w-full">
           {[
@@ -31,7 +55,10 @@ const Home = () => {
             <p
               key={paragraph.id}
               className={classNames(
-                paragraph.id === 2 ? 'font-medium text-4xl italic py-5' : 'font-bold text-2xl',
+                paragraph.id === 2
+                  ? 'font-medium text-4xl italic py-5'
+                  : 'font-bold text-2xl',
+                paragraph.id === 2 ? 'sm:text-2xl sm:py-3' : 'sm:text-lg',
               )}
             >
               {paragraph.text}
@@ -52,7 +79,10 @@ const Home = () => {
           ].map((paragraph) => (
             <p
               key={paragraph.id}
-              className="font-bold text-2xl text-right [&>span]:bg-[#FEEFC6]"
+              className={classNames(
+                'font-bold text-2xl text-right [&>span]:bg-[#FEEFC6]',
+                'sm:text-lg sm:text-left',
+              )}
               dangerouslySetInnerHTML={{ __html: paragraph.text }}
             />
           ))}
@@ -68,14 +98,19 @@ const Home = () => {
           ].map((paragraph) => (
             <p
               key={paragraph.id}
-              className="font-medium text-3xl text-center"
+              className={classNames('font-medium text-3xl text-center', 'sm:text-lg')}
             >
               {paragraph.text}
             </p>
           ))}
         </article>
       </section>
-      <section className="flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen h-screen">
+      <section
+        className={classNames(
+          'flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen h-screen',
+          'sm:h-auto sm:py-16 sm:px-4 sm:gap-12',
+        )}
+      >
         <HGroup>조직도</HGroup>
         <article className="flex flex-col items-center">
           {[
@@ -85,16 +120,26 @@ const Home = () => {
             { id: 4, name: '집행위원회' },
           ].map((organization) => (
             <Fragment key={organization.id}>
-              <div className="bg-[#00187a] text-white font-black text-xl py-2 px-4 text-center w-36">
+              <div
+                className={classNames(
+                  'bg-[#00187a] text-white font-black text-xl py-2 px-4 text-center w-36',
+                  'sm:text-base sm:w-24',
+                )}
+              >
                 {organization.name}
               </div>
               <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
             </Fragment>
           ))}
-          <div className="px-5.75 w-full">
+          <div className={classNames('px-5.75 w-full', 'sm:px-2')}>
             <div className="w-full h-0.5 bg-[#00187a]" />
           </div>
-          <div className="flex gap-10">
+          <div
+            className={classNames(
+              'flex gap-10',
+              'sm:flex-wrap sm:justify-center sm:gap-6',
+            )}
+          >
             {[
               '교육과학위원회',
               '기획재정위원회',
@@ -112,7 +157,12 @@ const Home = () => {
                 className="flex flex-col justify-center items-center"
               >
                 <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
-                <div className="bg-[#00187a] text-white font-black text-xl h-56 py-2 w-6 px-6 flex items-center justify-center">
+                <div
+                  className={classNames(
+                    'bg-[#00187a] text-white font-black text-xl h-56 py-2 w-6 px-6 flex items-center justify-center',
+                    'sm:text-sm sm:h-40 sm:w-4 sm:px-3',
+                  )}
+                >
                   <span>{organization}</span>
                 </div>
               </div>
@@ -120,10 +170,20 @@ const Home = () => {
           </div>
         </article>
       </section>
-      <section className="flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#001B75] w-screen min-h-screen">
+      <section
+        className={classNames(
+          'flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#001B75] w-screen min-h-screen',
+          'sm:py-16 sm:px-4 sm:gap-12',
+        )}
+      >
         <HGroup variant="dark">연혁</HGroup>
-        <article className="flex w-full justify-between">
-          <div className="grid grid-cols-2 gap-10">
+        <article
+          className={classNames(
+            'flex w-full justify-between',
+            'sm:flex-col sm:gap-8',
+          )}
+        >
+          <div className={classNames('grid grid-cols-2 gap-10', 'sm:grid-cols-1 sm:gap-6')}>
             {[
               [
                 { year: 2002, list: ['10. “대한민국고등학교총학생회” 설립'] },
@@ -274,29 +334,35 @@ const Home = () => {
                       width={500}
                       height={500}
                       alt="logo"
+                      className={classNames('mx-auto', 'sm:w-40 sm:h-40')}
                     />
                   </div>
                 );
               }
               return (
                 <div
-                  className="flex gap-4"
+                  className={classNames('flex gap-4', 'sm:gap-3')}
                   key={idx}
                 >
                   <div className="h-full w-0.5 bg-white" />
-                  <div className="flex flex-col gap-8">
+                  <div className={classNames('flex flex-col gap-8', 'sm:gap-6')}>
                     {historyList.map((history) => (
                       <div
                         key={history.year}
-                        className="flex text-white font-[Pretendard] gap-3"
+                        className={classNames(
+                          'flex text-white font-[Pretendard] gap-3',
+                          'sm:gap-2',
+                        )}
                       >
                         <div className="absolute -ml-5.25 w-2 h-2 bg-white rounded-full mt-3" />
-                        <h1 className="text-2xl font-bold">{history.year}</h1>
+                        <h1 className={classNames('text-2xl font-bold', 'sm:text-lg')}>
+                          {history.year}
+                        </h1>
                         <ul className="mt-1.25">
                           {history.list.map((info) => (
                             <p
                               key={info}
-                              className="text-base font-medium"
+                              className={classNames('text-base font-medium', 'sm:text-sm')}
                             >
                               {info}
                             </p>
@@ -314,17 +380,28 @@ const Home = () => {
       </section>
       <section
         id="events"
-        className="flex items-center py-[5%] flex-col gap-24 w-screen min-h-screen"
+        className={classNames(
+          'flex items-center py-[5%] flex-col gap-24 w-screen min-h-screen',
+          'sm:py-16 sm:gap-12',
+        )}
       >
         <HGroup>대표 행사</HGroup>
         <KSCCarousel />
       </section>
       <section
         id="SNS"
-        className="flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen"
+        className={classNames(
+          'flex items-center py-[5%] px-[16%] flex-col gap-24 bg-[#E9F1FF] w-screen',
+          'sm:px-4 sm:gap-12',
+        )}
       >
         <HGroup>SNS</HGroup>
-        <ul className="w-full flex justify-between">
+        <ul
+          className={classNames(
+            'w-full flex justify-between',
+            'sm:flex-col sm:items-center sm:gap-6',
+          )}
+        >
           {[
             {
               name: '대한학생회 공식 인스타그램',
@@ -351,15 +428,24 @@ const Home = () => {
               href={snsInfo.href}
               target="_blank"
               key={snsInfo.name}
-              className="flex flex-col gap-2 justify-center items-center"
+              className={classNames(
+                'flex flex-col gap-2 justify-center items-center',
+                'sm:w-full',
+              )}
             >
               <Image
                 src={snsInfo.logoUrl}
                 width={100}
                 height={100}
                 alt={snsInfo.name}
+                className={classNames('mx-auto', 'sm:w-16 sm:h-16')}
               />
-              <span className="text-xs font-[Pretendard] font-semibold underline text-[#001B75]">
+              <span
+                className={classNames(
+                  'text-xs font-[Pretendard] font-semibold underline text-[#001B75]',
+                  'sm:text-sm',
+                )}
+              >
                 {snsInfo.name}
               </span>
             </a>
@@ -368,17 +454,25 @@ const Home = () => {
       </section>
       <section
         id="contact"
-        className="flex items-center py-[5%] px-[16%] flex-col gap-24 w-screen bg-[#001B75]"
+        className={classNames(
+          'flex items-center py-[5%] px-[16%] flex-col gap-24 w-screen bg-[#001B75]',
+          'sm:py-16 sm:px-4 sm:gap-12',
+        )}
       >
         <HGroup variant="dark">Contact</HGroup>
         <article className="font-[Pretendard] text-white flex flex-col items-center justify-center gap-1">
-          <h2 className="text-xl font-bold">문 의</h2>
-          <p className="whitespace-pre-wrap text-center font-medium">
+          <h2 className={classNames('text-xl font-bold', 'sm:text-lg')}>문 의</h2>
+          <p
+            className={classNames(
+              'whitespace-pre-wrap text-center font-medium',
+              'sm:text-sm',
+            )}
+          >
             하단 이메일 주소로 메일 보내주시기 바랍니다.{'\n'}빠른 시일 내로 회신드리겠습니다.
           </p>
-          <div className="h-10" />
+          <div className={classNames('h-10', 'sm:h-6')} />
           <a
-            className="text-3xl font-bold"
+            className={classNames('text-3xl font-bold', 'sm:text-lg')}
             href="mailto:koreasc.official@gmail.com"
           >
             koreasc.official@gmail.com

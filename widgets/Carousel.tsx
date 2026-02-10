@@ -36,17 +36,21 @@ const Carousel = <T,>({ items, renderItems, dot, ...options }: CarouselProps<T>)
 
   return (
     <div
-      className={cn('relative w-screen px-20 text-center', {
-        'text-center': dotAlign === 'center',
-        'text-right': dotAlign === 'right',
-        'text-left': dotAlign === 'left',
-      })}
+      className={cn(
+        'relative w-screen px-20 text-center',
+        'sm:px-4',
+        {
+          'text-center': dotAlign === 'center',
+          'text-right': dotAlign === 'right',
+          'text-left': dotAlign === 'left',
+        },
+      )}
     >
       <div
         ref={emblaRef}
-        className="ml-6 overflow-hidden"
+        className={cn('ml-6 overflow-hidden', 'sm:ml-0')}
       >
-        <ul className="flex">{items.map(renderItems)}</ul>
+        <ul className={cn('flex', 'sm:gap-4')}>{items.map(renderItems)}</ul>
       </div>
       {!!dot &&
         [...Array(itemCount)].map((_, idx) => (
