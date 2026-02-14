@@ -6,10 +6,7 @@ const Footer = () => {
       <div className="w-full h-px bg-white" />
       <hgroup className="flex flex-col md:flex-row justify-between gap-2 md:gap-4">
         <p className="text-white text-xs md:text-sm text-center md:text-left">
-          Copyrights &copy; 2025 by KOREASC. all rights Reserved.
-        </p>
-        <p className="text-white text-sm">
-          Made by. 임희재 박우빈 박서빈 박유영 서동석 이유진 유하늘 조정윤 김준희 최보련
+          Copyrights &copy; 2026 by KOREASC. all rights Reserved.
         </p>
       </hgroup>
     </footer>

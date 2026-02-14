@@ -13,18 +13,28 @@ const Header = () => {
         className="w-auto h-10 md:h-full"
         width={999}
         height={999}
-        alt="logo"
+        alt="Made by. 임희재 박우빈 박서빈 박유영 서동석 이유진 유하늘 조정윤 김준희 최보련"
       />
-      
+
       {/* 햄버거 메뉴 버튼 (모바일) */}
       <button
         className="md:hidden flex flex-col gap-1.5 p-2"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="메뉴"
       >
-        <span className={`w-6 h-0.5 bg-black transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`w-6 h-0.5 bg-black transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
-        <span className={`w-6 h-0.5 bg-black transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        <span
+          className={`w-6 h-0.5 bg-black transition-transform ${
+            isMenuOpen ? 'rotate-45 translate-y-2' : ''
+          }`}
+        />
+        <span
+          className={`w-6 h-0.5 bg-black transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}
+        />
+        <span
+          className={`w-6 h-0.5 bg-black transition-transform ${
+            isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+          }`}
+        />
       </button>
 
       {/* 데스크톱 메뉴 */}
