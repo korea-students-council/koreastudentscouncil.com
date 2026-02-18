@@ -83,7 +83,7 @@ const Home = () => {
           ].map((paragraph) => (
             <p
               key={paragraph.id}
-              className="font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl text-center"
+              className="font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl text-center font-[JeonnamEducationBarun]"
             >
               {paragraph.text}
             </p>
