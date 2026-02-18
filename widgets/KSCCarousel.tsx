@@ -20,18 +20,23 @@ const KSCCarousel = () => {
       loop
       align="start"
       items={data}
+      autoplayMs={5000}
+      dot={{ align: 'center', size: 10 }}
       renderItems={(item: { id: number; imageUrl: string; title: string; content: string }) => (
         <li
           key={item.id}
-          className="relative flex w-full shrink-0 pr-[14px] gap-20"
+          className="relative flex w-full shrink-0 pr-5 gap-20"
         >
-          <Image
-            src={item.imageUrl}
-            width={99999}
-            height={99999}
-            alt={item.title}
-            className="w-full"
-          />
+          <div className="relative w-[70%] aspect-square overflow-hidden rounded-xl">
+            <Image
+              src={item.imageUrl}
+              alt={item.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover select-none"
+              draggable={false}
+            />
+          </div>
           <div className="w-full flex flex-col items-start justify-between h-full gap-8 py-10">
             <div className="flex flex-col gap-8 h-full">
               <hgroup className="flex items-center gap-2">
@@ -45,9 +50,9 @@ const KSCCarousel = () => {
                   대표행사 {String(item.id).padStart(2, '0')}
                 </h3>
               </hgroup>
-              <h3 className="text-8xl font-bold">{item.title}</h3>
+              <h3 className="text-7xl font-bold font-[Pretendard] text-left">{item.title}</h3>
             </div>
-            <p className="text-xl font-semibold block h-full whitespace-pre-wrap text-left">
+            <p className="text-2xl font-semibold block h-full whitespace-pre-wrap text-left">
               {item.content.replaceAll('\\n', '\n')}
             </p>
           </div>

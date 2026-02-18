@@ -9,13 +9,14 @@ import useEmblaCarousel from 'embla-carousel-react';
 interface CarouselProps<T> extends EmblaOptionsType {
   items: Array<T>;
   renderItems: (item: T, idx?: number) => ReactNode;
+  autoplayMs?: number;
   dot?: {
     align?: 'left' | 'center' | 'right';
     size?: number;
   };
 }
 
-const Carousel = <T,>({ items, renderItems, dot, ...options }: CarouselProps<T>) => {
+const Carousel = <T,>({ items, renderItems, autoplayMs, dot, ...options }: CarouselProps<T>) => {
   const itemCount = items.length;
   const dotSize = dot?.size || 8;
   const dotAlign = dot?.align || 'center';
@@ -34,9 +35,18 @@ const Carousel = <T,>({ items, renderItems, dot, ...options }: CarouselProps<T>)
     emblaApi.on('select', onSelect);
   }, [emblaApi, onSelect]);
 
+  useEffect(() => {
+    if (!emblaApi || !autoplayMs) return;
+    const timerId = window.setInterval(() => {
+      emblaApi.scrollNext();
+    }, autoplayMs);
+
+    return () => window.clearInterval(timerId);
+  }, [emblaApi, autoplayMs]);
+
   return (
     <div
-      className={cn('relative w-screen px-20 text-center', {
+      className={cn('relative w-screen px-20 text-center select-none', {
         'text-center': dotAlign === 'center',
         'text-right': dotAlign === 'right',
         'text-left': dotAlign === 'left',
@@ -48,19 +58,29 @@ const Carousel = <T,>({ items, renderItems, dot, ...options }: CarouselProps<T>)
       >
         <ul className="flex">{items.map(renderItems)}</ul>
       </div>
-      {!!dot &&
-        [...Array(itemCount)].map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => emblaApi?.scrollTo(idx)}
-            type="button"
-          >
-            <Dot
-              filled={idx === currentIndex}
-              size={dotSize}
-            />
-          </button>
-        ))}
+      {!!dot && (
+        <div
+          className={cn('mt-6 flex items-center gap-2', {
+            'justify-center': dotAlign === 'center',
+            'justify-end': dotAlign === 'right',
+            'justify-start': dotAlign === 'left',
+          })}
+        >
+          {[...Array(itemCount)].map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => emblaApi?.scrollTo(idx)}
+              type="button"
+              aria-label={`Go to slide ${idx + 1}`}
+            >
+              <Dot
+                filled={idx === currentIndex}
+                size={dotSize}
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -70,7 +90,7 @@ function Dot({ size, filled }: { size: number; filled?: boolean }) {
     <span
       className={cn(
         'relative ml-1 inline-block rounded-full',
-        filled ? 'bg-findaGray-50' : 'bg-findaGray-70/40',
+        filled ? 'bg-black' : 'border border-black',
       )}
       style={{ width: `${size}px`, height: `${size}px` }}
     />

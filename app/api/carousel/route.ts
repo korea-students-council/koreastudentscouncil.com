@@ -1,5 +1,6 @@
 import { readdir, readFile, writeFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 import path from 'path';
 
 export async function POST(req: NextRequest) {
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest) {
   const buffer = Buffer.from(await file.arrayBuffer());
   try {
     const pathname = path.join(process.cwd(), 'public/database/' + title);
-    const filename = `${Date.now()}_${encodeURI(file.name)}`;
+    const filename = `${crypto.randomUUID()}${path.extname(file.name)}`;
 
     const url = path.join('/database/' + title);
     await writeFile(`${pathname}-${filename}`, buffer);
