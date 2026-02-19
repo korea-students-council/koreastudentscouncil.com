@@ -14,11 +14,11 @@ const Home = () => {
         id="introduce"
         className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col pt-16 md:pt-0"
       >
-        <hgroup className="flex flex-col items-center justify-center -mt-12 font-[Pretendard] px-4">
-          <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#3943AE] font-semibold text-center">
+        <hgroup className="flex flex-col items-center justify-center -mt-40 md:-mt-12 lg:-mt-12 font-[Pretendard] px-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#3943AE] font-semibold text-center">
             전국고교학생회장연합
           </h2>
-          <h1 className="text-5xl sm:text-7xl md:text-9xl lg:text-[13rem] text-[#00187a] font-bold leading-[115%] text-center">
+          <h1 className="text-7xl md:text-9xl lg:text-[13rem] text-[#00187a] font-bold leading-[115%] text-center">
             대한학생회
           </h1>
         </hgroup>
@@ -106,52 +106,53 @@ const Home = () => {
               <div className="h-4 md:h-5 w-0.5 bg-[#00187a] mx-auto" />
             </Fragment>
           ))}
-          <div className="px-5.75 w-full max-w-4xl">
-            <div className="w-full h-0.5 bg-[#00187a]" />
-          </div>
-
           {/* 데스크톱 버전 - 가로 배치 */}
-          <div className="hidden lg:flex gap-6 xl:gap-10">
-            {[
-              '교육과학위원회',
-              '기획재정위원회',
-              '나라사랑위원회',
-              '대외협력위원회',
-              '문화체육위원회',
-              '사무운영위원회',
-              '사회복지위원회',
-              '언론홍보위원회',
-              '윤리위원회',
-              '환경안전위원회',
-            ].map((organization) => {
-              if (organization === '윤리위원회') {
+          <div className="flex flex-col justify-center items-center">
+            <div className="px-4.75 w-full">
+              <div className="h-0.5 w-full bg-[#00187a]" />
+            </div>
+            <div className="hidden lg:flex gap-6 xl:gap-10 w-full">
+              {[
+                '교육과학위원회',
+                '기획재정위원회',
+                '나라사랑위원회',
+                '대외협력위원회',
+                '문화체육위원회',
+                '사무운영위원회',
+                '사회복지위원회',
+                '언론홍보위원회',
+                '윤리위원회',
+                '환경안전위원회',
+              ].map((organization) => {
+                if (organization === '윤리위원회') {
+                  return (
+                    <div
+                      key={organization}
+                      className="flex flex-col justify-center items-center"
+                    >
+                      <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
+                      <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-3.5 w-5 xl:w-6 px-5 xl:px-6 flex flex-col items-center justify-between">
+                        {['윤', '리', '위', '원', '회'].map((organizationWord) => (
+                          <span key={organizationWord}>{organizationWord}</span>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div
                     key={organization}
                     className="flex flex-col justify-center items-center"
                   >
                     <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
-                    <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-3.5 w-5 xl:w-6 px-5 xl:px-6 flex flex-col items-center justify-between">
-                      {['윤', '리', '위', '원', '회'].map((organizationWord) => (
-                        <span key={organizationWord}>{organizationWord}</span>
-                      ))}
+                    <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-2 w-5 xl:w-6 px-5 xl:px-6 flex items-center justify-center">
+                      <span>{organization}</span>
                     </div>
                   </div>
                 );
-              }
-
-              return (
-                <div
-                  key={organization}
-                  className="flex flex-col justify-center items-center"
-                >
-                  <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
-                  <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-2 w-5 xl:w-6 px-5 xl:px-6 flex items-center justify-center">
-                    <span>{organization}</span>
-                  </div>
-                </div>
-              );
-            })}
+              })}
+            </div>
           </div>
 
           {/* 태블릿 버전 - 2줄 배치 */}
@@ -267,7 +268,7 @@ const Home = () => {
                   year: 2011,
                   list: [
                     '2월 ‘제7회 전국고교 학생회장 토론회 및 리더십연수’ 주최 및 주관',
-                    '8월 ‘제11회 대한민국 청소년 동아리 경진 대회 후원',
+                    '8월 ‘제11회 대한민국 청소년 동아리 경진 대회’ 후원',
                     '8월 ‘세계 청소년 문화 축제’ 후원',
                   ],
                 },
@@ -302,7 +303,7 @@ const Home = () => {
                   year: 2016,
                   list: [
                     '2월 ‘제12회 전국고교 학생회장 토론회 및 리더십연수’ 주최 및 주관',
-                    '07. 대한학생회 & 미래 인재 문화교육진흥원 업무 협약',
+                    '7월 대한학생회 & 미래 인재 문화교육진흥원 업무 협약',
                     '10월 ‘제4회 꿈지락’ 주최 및 주관',
                     '12월 ‘제1회 서로를 품다’ 주최 및 주관',
                   ],
@@ -384,7 +385,7 @@ const Home = () => {
                         key={history.year}
                         className="flex text-white font-[Pretendard] gap-2 md:gap-3"
                       >
-                        <div className="absolute -ml-3.5 md:-ml-4.5 lg:-ml-5.25 w-1.5 md:w-2 h-1.5 md:h-2 bg-white rounded-full mt-2 md:mt-2.5 lg:mt-3" />
+                        <div className="absolute md:-ml-4.5 -ml-3 lg:-ml-5.25 w-1.5 md:w-2 h-1.5 md:h-2 bg-white rounded-full mt-2 md:mt-2.5 lg:mt-3" />
                         <h1 className="text-lg md:text-xl lg:text-2xl font-bold min-w-[3rem] md:min-w-[3.5rem]">
                           {history.year}
                         </h1>

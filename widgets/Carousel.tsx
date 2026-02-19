@@ -46,7 +46,7 @@ const Carousel = <T,>({ items, renderItems, autoplayMs, dot, ...options }: Carou
 
   return (
     <div
-      className={cn('relative w-screen px-20 text-center select-none', {
+      className={cn('relative w-screen md:px-20 lg:px-20 text-center select-none', {
         'text-center': dotAlign === 'center',
         'text-right': dotAlign === 'right',
         'text-left': dotAlign === 'left',

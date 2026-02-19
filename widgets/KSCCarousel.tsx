@@ -20,14 +20,14 @@ const KSCCarousel = () => {
       loop
       align="start"
       items={data}
-      autoplayMs={5000}
+      autoplayMs={10 * 1000}
       dot={{ align: 'center', size: 10 }}
       renderItems={(item: { id: number; imageUrl: string; title: string; content: string }) => (
         <li
           key={item.id}
-          className="relative flex w-full shrink-0 pr-5 gap-20"
+          className="relative flex md:flex-row lg:flex-row flex-col w-full shrink-0 pr-5 md:gap-20 lg:gap-20"
         >
-          <div className="relative w-[70%] aspect-square overflow-hidden rounded-xl">
+          <div className="relative w-full lg:w-[90%] md:w-[90%] md:aspect-video lg:aspect-video aspect-square overflow-hidden rounded-xl">
             <Image
               src={item.imageUrl}
               alt={item.title}
@@ -37,9 +37,9 @@ const KSCCarousel = () => {
               draggable={false}
             />
           </div>
-          <div className="w-full flex flex-col items-start justify-between h-full gap-8 py-10">
-            <div className="flex flex-col gap-8 h-full">
-              <hgroup className="flex items-center gap-2">
+          <div className="w-full flex flex-col items-start md:justify-between lg:justify-between md:h-full lg:h-full gap-8 py-4 md:py-10 lg:py-10">
+            <div className="flex flex-col gap-8 md:h-full lg:h-full">
+              <hgroup className="hidden items-center gap-2 md:flex lg:flex">
                 <Image
                   src="/primary-logo.png"
                   alt="logo"
@@ -50,9 +50,11 @@ const KSCCarousel = () => {
                   대표행사 {String(item.id).padStart(2, '0')}
                 </h3>
               </hgroup>
-              <h3 className="text-7xl font-bold font-[Pretendard] text-left">{item.title}</h3>
+              <h3 className="md:text-7xl lg:text-7xl text-2xl font-bold font-[Pretendard] text-left break-keep">
+                {item.title}
+              </h3>
             </div>
-            <p className="text-2xl font-semibold block h-full whitespace-pre-wrap text-left">
+            <p className="md:text-xl lg:text-xl text-sm font-semibold block md:h-full lg:h-full whitespace-pre-wrap text-left break-keep">
               {item.content.replaceAll('\\n', '\n')}
             </p>
           </div>
