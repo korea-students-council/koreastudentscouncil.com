@@ -92,7 +92,7 @@ const Home = () => {
       </section>
       <section className="flex items-center py-[5%] px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-12 md:gap-16 lg:gap-24 bg-[#E9F1FF] w-screen lg:min-h-screen">
         <HGroup>조직도</HGroup>
-        <article className="flex flex-col items-center w-full lg:w-4/5">
+        <article className="flex flex-col items-center w-full lg:w-3/5">
           <Image
             src="/organization-chart.png"
             width={9999}
