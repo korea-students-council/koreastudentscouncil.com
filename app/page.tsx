@@ -90,74 +90,22 @@ const Home = () => {
           ))}
         </article>
       </section>
-      <section className="flex items-center py-[5%] px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-12 md:gap-16 lg:gap-24 bg-[#E9F1FF] w-screen min-h-screen">
+      <section className="flex items-center py-[5%] px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-12 md:gap-16 lg:gap-24 bg-[#E9F1FF] w-screen lg:min-h-screen">
         <HGroup>조직도</HGroup>
-        <article className="flex flex-col items-center w-full">
-          {[
-            { id: 1, name: '회장' },
-            { id: 2, name: '부회장' },
-            { id: 3, name: '중앙위원회' },
-            { id: 4, name: '집행위원회' },
-          ].map((organization) => (
-            <Fragment key={organization.id}>
-              <div className="bg-[#00187a] text-white font-black text-sm md:text-base lg:text-xl py-2 px-4 text-center w-28 md:w-32 lg:w-36">
-                {organization.name}
-              </div>
-              <div className="h-4 md:h-5 w-0.5 bg-[#00187a] mx-auto" />
-            </Fragment>
-          ))}
-          {/* 데스크톱 버전 - 가로 배치 */}
-          <div className="flex flex-col justify-center items-center">
-            <div className="px-4.75 w-full">
-              <div className="h-0.5 w-full bg-[#00187a]" />
-            </div>
-            <div className="hidden lg:flex gap-6 xl:gap-10 w-full">
-              {[
-                '교육과학위원회',
-                '기획재정위원회',
-                '나라사랑위원회',
-                '대외협력위원회',
-                '문화체육위원회',
-                '사무운영위원회',
-                '사회복지위원회',
-                '언론홍보위원회',
-                '윤리위원회',
-                '환경안전위원회',
-              ].map((organization) => {
-                if (organization === '윤리위원회') {
-                  return (
-                    <div
-                      key={organization}
-                      className="flex flex-col justify-center items-center"
-                    >
-                      <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
-                      <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-3.5 w-5 xl:w-6 px-5 xl:px-6 flex flex-col items-center justify-between">
-                        {['윤', '리', '위', '원', '회'].map((organizationWord) => (
-                          <span key={organizationWord}>{organizationWord}</span>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div
-                    key={organization}
-                    className="flex flex-col justify-center items-center"
-                  >
-                    <div className="h-5 w-0.5 bg-[#00187a] mx-auto" />
-                    <div className="bg-[#00187a] text-white font-black text-base xl:text-xl h-48 xl:h-56 py-2 w-5 xl:w-6 px-5 xl:px-6 flex items-center justify-center">
-                      <span>{organization}</span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 태블릿 버전 - 2줄 배치 */}
-          <div className="hidden md:grid lg:hidden grid-cols-5 gap-4 w-full max-w-3xl">
+        <article className="flex flex-col items-center w-full lg:w-4/5">
+          <Image
+            src="/organization-chart.png"
+            width={9999}
+            height={9999}
+            alt="조직도"
+            className="조직도"
+          />
+          <ul className="hidden">
             {[
+              '회장',
+              '부회장',
+              '중앙위원회',
+              '집행위원회',
               '교육과학위원회',
               '기획재정위원회',
               '나라사랑위원회',
@@ -169,43 +117,14 @@ const Home = () => {
               '윤리위원회',
               '환경안전위원회',
             ].map((organization) => (
-              <div
+              <li
+                className="hidden"
                 key={organization}
-                className="flex flex-col justify-center items-center"
               >
-                <div className="h-3 w-0.5 bg-[#00187a] mx-auto" />
-                <div className="bg-[#00187a] text-white font-black text-xs h-32 py-2 w-4 px-4 flex items-center justify-center">
-                  <span>{organization}</span>
-                </div>
-              </div>
+                {organization}
+              </li>
             ))}
-          </div>
-
-          {/* 모바일 버전 - 3열 그리드 */}
-          <div className="grid md:hidden grid-cols-3 gap-3 w-full max-w-md">
-            {[
-              '교육과학위원회',
-              '기획재정위원회',
-              '나라사랑위원회',
-              '대외협력위원회',
-              '문화체육위원회',
-              '사무운영위원회',
-              '사회복지위원회',
-              '언론홍보위원회',
-              '윤리위원회',
-              '환경안전위원회',
-            ].map((organization) => (
-              <div
-                key={organization}
-                className="flex flex-col justify-center items-center"
-              >
-                <div className="h-2 w-0.5 bg-[#00187a] mx-auto" />
-                <div className="bg-[#00187a] text-white font-black text-[10px] h-24 py-1 w-3 px-3 flex items-center justify-center">
-                  <span>{organization}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          </ul>
         </article>
       </section>
       <section className="flex items-center py-[5%] px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-12 md:gap-16 lg:gap-24 bg-[#001B75] w-screen min-h-screen">
