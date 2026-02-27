@@ -10,10 +10,7 @@ const Home = () => {
   return (
     <main className="bg-white">
       <Header />
-      <section
-        id="introduce"
-        className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col pt-16 md:pt-0"
-      >
+      <section className="w-screen h-screen bg-[url('/background.jpg')] bg-cover bg-center flex items-center justify-center flex-col pt-16 md:pt-0">
         <hgroup className="flex flex-col items-center justify-center -mt-40 md:-mt-12 lg:-mt-12 font-[Pretendard] px-4">
           <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#3943AE] font-semibold text-center">
             전국고교학생회장연합
@@ -23,7 +20,10 @@ const Home = () => {
           </h1>
         </hgroup>
       </section>
-      <section className="flex items-center justify-center px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-10 md:gap-16 lg:gap-20 bg-[url('/introduce-background.png')] bg-cover bg-center w-screen min-h-screen py-20">
+      <section
+        id="introduce"
+        className="flex items-center justify-center px-[5%] md:px-[10%] lg:px-[16%] flex-col gap-10 md:gap-16 lg:gap-20 bg-[url('/introduce-background.png')] bg-cover bg-center w-screen min-h-screen py-20"
+      >
         <HGroup>단체 소개</HGroup>
         <article className="flex flex-col font-[Pretendard] text-[#00187a] w-full">
           {[
