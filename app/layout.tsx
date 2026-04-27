@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Provider from "./providers";
 
+const siteDescription =
+  "대한학생회는 청소년 리더십 함양을 위해 교육·문화·복지 공익사업을 운영합니다.";
+
 export const metadata: Metadata = {
   title: "대한학생회 공식 홈페이지 Korea Students Council",
-  description:
-    "[전국고교학생회장연합] 대한민국 리더십의 중심, 대한학생회 / 대한학생회는 정의, 정직, 성실, 예의의 4대 정신을 바탕으로 대한민국 청소년들의 자질 함양과 차세대 리더 양성을 위해 교육, 문화, 복지, 교류, 운영의 5대 사업 분야에 대한 다양한 공익 사업을 진행하고 있습니다.",
+  description: siteDescription,
   keywords: [
     "대한학생회",
     "전국고교학생회장연합",
@@ -25,8 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "대한학생회 공식 홈페이지 Korea Students Council",
-    description:
-      "[전국고교학생회장연합] 대한민국 리더십의 중심, 대한학생회 / 대한학생회는 정의, 정직, 성실, 예의의 4대 정신을 바탕으로 대한민국 청소년들의 자질 함양과 차세대 리더 양성을 위해 교육, 문화, 복지, 교류, 운영의 5대 사업 분야에 대한 다양한 공익 사업을 진행하고 있습니다.",
+    description: siteDescription,
     url: "https://koreastudentscouncil.com",
     images: [
       {
@@ -43,8 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "대한학생회 공식 홈페이지 Korea Students Council",
-    description:
-      "[전국고교학생회장연합] 대한민국 리더십의 중심, 대한학생회 / 대한학생회는 정의, 정직, 성실, 예의의 4대 정신을 바탕으로 대한민국 청소년들의 자질 함양과 차세대 리더 양성을 위해 교육, 문화, 복지, 교류, 운영의 5대 사업 분야에 대한 다양한 공익 사업을 진행하고 있습니다.",
+    description: siteDescription,
     images: [
       "https://storage.googleapis.com/cr-resource/image/5a2e841ee3f3d6089198a6e917892c57/koreascofficial/650/70cab5c9b21da6a628f3a61e27fa1dc2.png",
     ],
@@ -89,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`antialiased bg-white`}>
         <Provider>{children}</Provider>
       </body>
