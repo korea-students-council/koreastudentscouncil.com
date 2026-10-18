@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Provider from "./providers";
 
@@ -92,6 +93,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`antialiased bg-white`}>
         <Provider>{children}</Provider>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
