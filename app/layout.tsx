@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Provider from "./providers";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-73V46EYPE5";
 
 const siteDescription =
   "대한학생회는 청소년 리더십 함양을 위해 교육·문화·복지 공익사업을 운영합니다.";
@@ -92,6 +95,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`antialiased bg-white`}>
         <Provider>{children}</Provider>
+        <GoogleAnalytics gaId={GA_ID} />
       </body>
     </html>
   );
