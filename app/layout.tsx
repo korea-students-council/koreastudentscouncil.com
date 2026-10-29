@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Provider from "./providers";
 import RevealRoot from "@/widgets/RevealRoot";
 
-// GA4 측정 ID 는 환경 변수 NEXT_PUBLIC_GA_ID 로 넣습니다. 값이 없으면 스크립트를 싣지 않습니다.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-73V46EYPE5";
 
 const siteDescription =
   "대한학생회는 청소년 리더십 함양을 위해 교육·문화·복지 공익사업을 운영합니다.";
@@ -108,17 +107,7 @@ export default function RootLayout({
       <body>
         <Provider>{children}</Provider>
         <RevealRoot />
-        {GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
-            </Script>
-          </>
-        )}
+        <GoogleAnalytics gaId={GA_ID} />
       </body>
     </html>
   );
