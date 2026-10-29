@@ -1,12 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Provider from "./providers";
+import RevealRoot from "@/widgets/RevealRoot";
+
+// GA4 측정 ID 는 환경 변수 NEXT_PUBLIC_GA_ID 로 넣습니다. 값이 없으면 스크립트를 싣지 않습니다.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const siteDescription =
   "대한학생회는 청소년 리더십 함양을 위해 교육·문화·복지 공익사업을 운영합니다.";
 
 export const metadata: Metadata = {
-  title: "대한학생회 공식 홈페이지 Korea Students Council",
+  title: {
+    default: "대한학생회 공식 홈페이지 Korea Students Council",
+    template: "%s | 대한학생회",
+  },
   description: siteDescription,
   keywords: [
     "대한학생회",
@@ -89,9 +97,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`antialiased bg-white`}>
+    <html lang="ko" id="top" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
+      <body>
         <Provider>{children}</Provider>
+        <RevealRoot />
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

@@ -1,7 +1,8 @@
-import { readdir, readFile, writeFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import path from 'path';
+import { getEvents } from '@/lib/events';
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -32,30 +33,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  const dirPath = path.join(process.cwd(), 'public', 'database');
-
-  const files = await readdir(dirPath);
-
-  const txtFiles = files.filter((file) => file.endsWith('.txt'));
-  const imageFiles = files.filter((file) => !file.endsWith('.txt'));
-
-  const result = await Promise.all(
-    txtFiles.map(async (file) => {
-      const filePath = path.join(dirPath, file);
-      const content = await readFile(filePath, 'utf8');
-
-      return {
-        title: file.replace('.txt', ''),
-        content,
-        imageUrl: `/api/image/${imageFiles.find((item) =>
-          item.includes(`${file.replace('.txt', '')}-`),
-        )}`,
-      };
-    }),
-  );
-
   return NextResponse.json({
     status: 200,
-    data: result.map((res, idx) => ({ ...res, id: idx + 1 })),
+    data: await getEvents(),
   });
 }
