@@ -1,82 +1,58 @@
 'use client';
 
+import classNames from 'classnames';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Recruit', href: '/recruit' },
+];
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
   return (
-    <header className="w-screen px-[5%] md:px-[10%] lg:px-[15%] bg-white h-16 md:h-19.5 flex items-center justify-between fixed z-100 shadow-sm">
-      <Image
-        src="/header-logo.png"
-        className="w-auto h-10 md:h-full"
-        width={999}
-        height={999}
-        alt="Made by. 임희재 박우빈 박서빈 박유영 서동석 이유진 유하늘 조정윤 김준희 최보련"
-      />
-
-      {/* 햄버거 메뉴 버튼 (모바일) */}
-      <button
-        className="md:hidden flex flex-col gap-1.5 p-2"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-label="메뉴"
-      >
-        <span
-          className={`w-6 h-0.5 bg-black transition-transform ${
-            isMenuOpen ? 'rotate-45 translate-y-2' : ''
-          }`}
-        />
-        <span
-          className={`w-6 h-0.5 bg-black transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}
-        />
-        <span
-          className={`w-6 h-0.5 bg-black transition-transform ${
-            isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-          }`}
-        />
-      </button>
-
-      {/* 데스크톱 메뉴 */}
-      <ul className="hidden md:flex items-center h-full">
-        {[
-          { label: '단체 소개', href: '#introduce' },
-          { label: '대표 행사', href: '#events' },
-          { label: 'SNS', href: '#SNS' },
-          { label: 'Contact', href: '#contact' },
-        ].map((navItem) => (
-          <a
-            key={navItem.label}
-            href={navItem.href}
-            className="px-3 lg:px-5 h-full text-xs lg:text-[13px] font-[Pretendard] flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors text-black"
-          >
-            {navItem.label}
-          </a>
-        ))}
-      </ul>
-
-      {/* 모바일 메뉴 */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
-          <ul className="flex flex-col">
-            {[
-              { label: '단체 소개', href: '#introduce' },
-              { label: '대표 행사', href: '#events' },
-              { label: 'SNS', href: '#SNS' },
-              { label: 'Contact', href: '#contact' },
-            ].map((navItem) => (
-              <a
-                key={navItem.label}
-                href={navItem.href}
-                className="px-5 py-4 text-sm font-[Pretendard] cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 text-black"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {navItem.label}
-              </a>
+    <header className="fixed inset-x-0 top-0 z-50 h-(--header) bg-bg">
+      <div className="flex h-full items-center justify-between px-(--gutter)">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5"
+          aria-label="대한학생회 홈"
+        >
+          <Image
+            src="/primary-logo.png"
+            alt=""
+            width={330}
+            height={330}
+            priority
+            className="size-8"
+          />
+          <span className="text-[18px] font-bold tracking-[-0.03em] text-ink">대한학생회</span>
+        </Link>
+        <nav aria-label="주요 메뉴">
+          <ul className="flex items-center gap-5 sm:gap-8">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={classNames(
+                    'inline-flex h-10 items-center text-note font-semibold transition-colors duration-200',
+                    isActive(item.href) ? 'text-ink' : 'text-soft hover:text-ink',
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
             ))}
           </ul>
-        </div>
-      )}
+        </nav>
+      </div>
     </header>
   );
 };

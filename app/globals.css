@@ -1,38 +1,6 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'JeonnamEducationBarun';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-1@1.0/JNE-Bareun-TTF-Bold.woff2')
-    format('woff2');
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2')
-    format('woff2');
-  font-weight: 100;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2')
-    format('woff2');
-  font-weight: 200;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2')
-    format('woff2');
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2')
     format('woff2');
@@ -72,37 +40,153 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2')
-    format('woff2');
-  font-weight: 900;
-  font-display: swap;
+/* 색과 글자 크기는 모두 이 토큰을 거쳐서 씁니다.
+   잉크는 남색 기운이 도는 거의 검정, 강조색은 로고 남색(#00187a)과 같은 색상의 밝은 파랑 하나만 둡니다. */
+@theme {
+  --color-bg: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-ink: #0c0e16;
+  --color-soft: #5a5f6b;
+  --color-mute: #8b909b;
+  --color-field: #0c0e16;
+  --color-on-field: #f5f6f8;
+  --color-on-field-soft: #a7acb6;
+  --color-accent: #1747ff;
+  --color-on-accent: #ffffff;
+
+  --font-sans: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+
+  --text-display: clamp(36px, 9.6vw, 172px);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.045em;
+  --text-headline: clamp(34px, 4.6vw, 72px);
+  --text-headline--line-height: 1.04;
+  --text-headline--letter-spacing: -0.035em;
+  --text-statement: clamp(20px, 2.4vw, 36px);
+  --text-statement--line-height: 1.32;
+  --text-statement--letter-spacing: -0.02em;
+  --text-body: 18px;
+  --text-body--line-height: 1.6;
+  --text-note: 15px;
+  --text-note--line-height: 1.5;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --primary: #00187a;
+  --gutter: clamp(16px, 2.4vw, 32px);
+  --section: clamp(96px, 12vw, 200px);
+  --header: 64px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #000000;
-    --primary: #00187a;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header) + 16px);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* 등장 모션: 스크립트가 html 에 .js 를 붙였을 때만 숨겼다가, 섹션이 보이면 자식들이 차례로 올라옵니다. */
+.js [data-reveal] > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.js [data-reveal].is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+.lift {
+  transition: transform 0.25s var(--ease-out-soft), background-color 0.25s, color 0.25s;
+}
+
+.lift:hover {
+  transform: translateY(-2px);
+}
+
+.lift:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.link-underline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+  transition: text-underline-offset 0.2s var(--ease-out-soft);
+}
+
+.link-underline:hover {
+  text-underline-offset: 0.34em;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slow-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.1) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+.drift {
+  animation: slow-drift 22s var(--ease-out-soft) infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js [data-reveal] > * {
+    transform: none;
+    transition: opacity 0.3s linear;
+    transition-delay: 0s;
+  }
+
+  .drift {
+    animation: none;
+  }
+
+  .lift:hover,
+  .lift:active {
+    transform: none;
+  }
 }

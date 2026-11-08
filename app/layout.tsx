@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Provider from "./providers";
+import RevealRoot from "@/widgets/RevealRoot";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-73V46EYPE5";
 
@@ -9,7 +10,10 @@ const siteDescription =
   "대한학생회는 청소년 리더십 함양을 위해 교육·문화·복지 공익사업을 운영합니다.";
 
 export const metadata: Metadata = {
-  title: "대한학생회 공식 홈페이지 Korea Students Council",
+  title: {
+    default: "대한학생회 공식 홈페이지 Korea Students Council",
+    template: "%s | 대한학생회",
+  },
   description: siteDescription,
   keywords: [
     "대한학생회",
@@ -92,9 +96,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`antialiased bg-white`}>
+    <html lang="ko" id="top" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
+      <body>
         <Provider>{children}</Provider>
+        <RevealRoot />
         <GoogleAnalytics gaId={GA_ID} />
       </body>
     </html>
